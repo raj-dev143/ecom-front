@@ -14,6 +14,8 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import toast from "react-hot-toast";
 
+import logo from "../../public/saptarishi-ayurvigyan.svg";
+
 interface PropsType {
   user: User | null;
 }
@@ -41,46 +43,54 @@ const Header = ({ user }: PropsType) => {
 
   return (
     <nav className="header">
-      <Link onClick={() => setIsOpen(false)} to={"/"}>
-        HOME
-      </Link>
-      <Link onClick={() => setIsOpen(false)} to={"/search"}>
-        <FaSearch />
-      </Link>
-      <Link onClick={() => setIsOpen(false)} to={"/cart"}>
-        <FaShoppingBag />
-        {totalItemCount > 0 && (
-          <span className="cart-count">{totalItemCount}</span>
-        )}
-      </Link>
-
-      {user?._id ? (
-        <>
-          <button onClick={() => setIsOpen((prev) => !prev)}>
-            <FaUser />
-          </button>
-          <dialog open={isOpen}>
-            <div>
-              {user.role === "admin" && (
-                <Link onClick={() => setIsOpen(false)} to="/admin/dashboard">
-                  Admin
-                </Link>
-              )}
-
-              <Link onClick={() => setIsOpen(false)} to="/orders">
-                Orders
-              </Link>
-              <button onClick={logoutHandler}>
-                <FaSignOutAlt />
-              </button>
-            </div>
-          </dialog>
-        </>
-      ) : (
-        <Link to={"/login"}>
-          <FaSignInAlt />
+      <img
+        src={logo}
+        alt="Saptarishi Ayurvigyan"
+        title="Saptarishi Ayurvigyan"
+        className="logo"
+      />
+      <div className="nav-link">
+        <Link onClick={() => setIsOpen(false)} to={"/"}>
+          HOME
         </Link>
-      )}
+        <Link onClick={() => setIsOpen(false)} to={"/search"}>
+          <FaSearch />
+        </Link>
+        <Link onClick={() => setIsOpen(false)} to={"/cart"}>
+          <FaShoppingBag />
+          {totalItemCount > 0 && (
+            <span className="cart-count">{totalItemCount}</span>
+          )}
+        </Link>
+
+        {user?._id ? (
+          <>
+            <button onClick={() => setIsOpen((prev) => !prev)}>
+              <FaUser />
+            </button>
+            <dialog open={isOpen}>
+              <div>
+                {user.role === "admin" && (
+                  <Link onClick={() => setIsOpen(false)} to="/admin/dashboard">
+                    Admin
+                  </Link>
+                )}
+
+                <Link onClick={() => setIsOpen(false)} to="/orders">
+                  Orders
+                </Link>
+                <button onClick={logoutHandler}>
+                  <FaSignOutAlt />
+                </button>
+              </div>
+            </dialog>
+          </>
+        ) : (
+          <Link to={"/login"}>
+            <FaSignInAlt />
+          </Link>
+        )}
+      </div>
     </nav>
   );
 };

@@ -17,7 +17,7 @@ import {
 import { Link, Location, useLocation } from "react-router-dom";
 import { IconType } from "react-icons";
 
-import logo from "../../../public/saptarishi-ayurvigyan.svg";
+// import logo from "../../../public/saptarishi-ayurvigyan.svg";
 
 const AdminSidebar = () => {
   const location = useLocation();
@@ -61,9 +61,9 @@ const AdminSidebar = () => {
             : {}
         }
       >
-        <h2>
+        {/* <h2>
           <img src={logo} alt="Saptarishi Ayurvigyan" title="Saptarishi Ayurvigyan"/>
-        </h2>
+        </h2> */}
         <DivOne location={location} />
         <DivTwo location={location} />
         <DivThree location={location} />
